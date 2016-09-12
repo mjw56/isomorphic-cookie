@@ -1,26 +1,24 @@
-# react-cookie
-Load, save and remove cookies within your React application
+# isomorphic-cookie
+Load, save and remove cookies within your isomorphic application
 
 ## Isomorphic cookies!
-You can also plug it directly with a Node.js request by adding just before the renderToString: `var unplug = reactCookie.plugToRequest(req, res);`<br />
+You can also plug it directly with a Node.js request by adding just before the renderToString: `var unplug = isomorphicCookie.plugToRequest(req, res);`<br />
 *(require the cookieParser middleware)*
 
 To ensure long running async operations do not attempt to alter cookies after the request has been sent, call the `unplug` function that is returned in a finally block in your router.
 
-If you are within a non-browser or Node.js environment, you can use `reactCookie.setRawCookie(req.headers.cookie)`
+If you are within a non-browser or Node.js environment, you can use `isomorphicCookie.setRawCookie(req.headers.cookie)`
 
-
+This supports Express and Hapi. If you need to support another framework, feel free to send a PR.
 
 ## Download
-NPM: `npm install react-cookie`<br />
-Bower: `bower install react-cookie`<br />
-CDN: `https://cdnjs.cloudflare.com/ajax/libs/react-cookie/0.4.3/react-cookie.min.js`
+`npm install isomorphic-cookie`<br />
 
 # Examples
 
 ```js
 import { Component } from 'react';
-import cookie from 'react-cookie';
+import cookie from 'isomorphic-cookie';
 
 export default class MyApp extends Component {
   constructor(props) {
@@ -50,18 +48,18 @@ export default class MyApp extends Component {
 ```
 
 ## Without CommonJS
-You can use react-cookie with anything by using the global variable `reactCookie`.
+You can use isomorphic-cookie with anything by using the global variable `isomorphicCookie`.
 
-*Note that `window` need to exists to use `reactCookie`.*
+*Note that `window` needs to exist to use `isomorphicCookie`.*
 
 ## Usage
 
-### `reactCookie.load(name, [doNotParse])`
-### `reactCookie.select([regex])`
-### `reactCookie.save(name, val, [opt])`
-### `reactCookie.remove(name, [opt])`
-### `reactCookie.plugToRequest(req, res): unplug()`
-### `reactCookie.setRawCookie(cookies)`
+### `isomorphicCookie.load(name, [doNotParse])`
+### `isomorphicCookie.select([regex])`
+### `isomorphicCookie.save(name, val, [opt])`
+### `isomorphicCookie.remove(name, [opt])`
+### `isomorphicCookie.plugToRequest(req, res): unplug()`
+### `isomorphicCookie.setRawCookie(cookies)`
 
 ## opt
 Support all the cookie options from the [RFC 6265](https://tools.ietf.org/html/rfc6265#section-4.1.2.1).

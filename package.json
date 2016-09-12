@@ -1,30 +1,34 @@
 {
-  "name": "react-cookie",
-  "version": "0.4.8",
-  "description": "Load and save cookies within your React application",
+  "name": "isomorphic-cookie",
+  "version": "0.5.2",
+  "description": "Load and save cookies on the client and server",
   "main": "index.js",
   "files": [
     "index.js",
-    "dist/react-cookie.js",
-    "dist/react-cookie.min.js"
+    "dist/isomorphic-cookie.js",
+    "dist/isomorphic-cookie.min.js"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/eXon/react-cookie.git"
+    "url": "https://github.com/mjw56/isomorphic-cookie.git"
   },
-  "bugs": "https://github.com/eXon/react-cookie/issues",
+  "bugs": "https://github.com/mjw56/isomorphic-cookie/issues",
   "keywords": [
     "cookie",
     "cookies",
-    "react",
-    "reactjs",
-    "jsx"
+    "isomorphic",
+    "isomorphicjs",
+    "express",
+    "hapi",
+    "node",
+    "auth",
+    "authentication"
   ],
-  "author": "Benoit Tremblay <trembl.ben@gmail.com>",
+  "author": "Mike Wilcox <mwilcox56@gmail.com>",
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "mkdirp dist && browserify index.js > dist/react-cookie.js && uglifyjs dist/react-cookie.js -o dist/react-cookie.min.js",
+    "build": "mkdirp dist && browserify index.js > dist/isomorphic-cookie.js && uglifyjs dist/isomorphic-cookie.js -o dist/isomorphic-cookie.min.js",
     "test": "node_modules/.bin/minijasminenode2 test.js"
   },
   "dependencies": {

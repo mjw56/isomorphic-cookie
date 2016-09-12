@@ -80,6 +80,11 @@ function save(name, val, opt) {
   if (_isResWritable() && _res.cookie) {
     _res.cookie(name, val, opt);
   }
+
+  // hapi
+  if (_isResWritable() && _res.state) {
+    _res.state(name, val, opt);
+  }
 }
 
 function remove(name, opt) {
@@ -102,6 +107,11 @@ function remove(name, opt) {
 
   if (_isResWritable() && _res.clearCookie) {
     _res.clearCookie(name, opt);
+  }
+
+  // hapi
+  if (_isResWritable() && _res.unstate) {
+    _res.unstate(name);
   }
 }
 
@@ -131,7 +141,7 @@ function plugToRequest(req, res) {
   }
 }
 
-var reactCookie = {
+var isomorphicCookie = {
   load: load,
   select: select,
   save: save,
@@ -141,7 +151,7 @@ var reactCookie = {
 };
 
 if (typeof window !== 'undefined') {
-  window['reactCookie'] = reactCookie;
+  window['isomorphicCookie'] = isomorphicCookie;
 }
 
-module.exports = reactCookie;
+module.exports = isomorphicCookie;

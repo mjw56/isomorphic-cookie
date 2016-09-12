@@ -1,85 +1,85 @@
-var reactCookie = require('./index');
+var isomorphicCookie = require('./index');
 var rewire = require('rewire')
 
 
-describe('ReactCookie', function() {
+describe('isomorphicCookie', function() {
   beforeEach(function() {
-    reactCookie.setRawCookie('');
+    isomorphicCookie.setRawCookie('');
   });
 
   describe('load', function() {
     it('should not crash if cookies undefined', function() {
       expect(function() {
-        reactCookie.setRawCookie(undefined);
+        isomorphicCookie.setRawCookie(undefined);
       }).not.toThrow();
 
-      expect(reactCookie.load('test')).toBe(undefined);
+      expect(isomorphicCookie.load('test')).toBe(undefined);
     });
 
     it('should read the cookie', function() {
-      reactCookie.setRawCookie('test=test');
-      expect(reactCookie.load('test')).toBe('test');
+      isomorphicCookie.setRawCookie('test=test');
+      expect(isomorphicCookie.load('test')).toBe('test');
     });
 
     it('should parse if an object', function() {
-      reactCookie.setRawCookie('test={"test": true}');
-      expect(reactCookie.load('test').test).toBe(true);
+      isomorphicCookie.setRawCookie('test={"test": true}');
+      expect(isomorphicCookie.load('test').test).toBe(true);
     });
 
     it('should not parse if we ask not to', function() {
-      reactCookie.setRawCookie('test={"test": true}');
-      expect(typeof reactCookie.load('test', true)).toBe('string');
+      isomorphicCookie.setRawCookie('test={"test": true}');
+      expect(typeof isomorphicCookie.load('test', true)).toBe('string');
     });
   });
 
   describe('select', function() {
     it('should not crash if cookies undefined', function() {
       expect(function() {
-        reactCookie.setRawCookie(undefined);
+        isomorphicCookie.setRawCookie(undefined);
       }).not.toThrow();
 
-      expect(reactCookie.select(/^test/g)).toEqual({});
+      expect(isomorphicCookie.select(/^test/g)).toEqual({});
     });
 
     it('should select and read all the matching cookies into an object', function() {
-      reactCookie.setRawCookie('test=foo;something=bar;foo=bar');
-      expect(reactCookie.select(/(test|foo)/)).toEqual({ test: 'foo', foo: 'bar' });
+      isomorphicCookie.setRawCookie('test=foo;something=bar;foo=bar');
+      expect(isomorphicCookie.select(/(test|foo)/)).toEqual({ test: 'foo', foo: 'bar' });
     });
 
     it('should read all cookies into an object if no parameter is passed', function() {
-      reactCookie.setRawCookie('test=foo;something=bar;foo=bar');
-      expect(reactCookie.select()).toEqual({ test: 'foo', something: 'bar', foo: 'bar' });
+      isomorphicCookie.setRawCookie('test=foo;something=bar;foo=bar');
+      expect(isomorphicCookie.select()).toEqual({ test: 'foo', something: 'bar', foo: 'bar' });
     });
   })
 
   describe('save', function() {
     it('should not crash if not in the browser', function() {
       expect(function() {
-        reactCookie.save('test', 'test');
+        isomorphicCookie.save('test', 'test');
       }).not.toThrow();
     });
 
     it('should update the value', function() {
-      reactCookie.setRawCookie('test=test');
-      expect(reactCookie.load('test')).toBe('test');
+      isomorphicCookie.setRawCookie('test=test');
+      expect(isomorphicCookie.load('test')).toBe('test');
 
-      reactCookie.save('test', 'other');
-      expect(reactCookie.load('test')).not.toBe('test');
+      isomorphicCookie.save('test', 'other');
+      expect(isomorphicCookie.load('test')).not.toBe('test');
     });
 
     it('should stringify an object', function() {
-      reactCookie.setRawCookie('test=test');
-      expect(reactCookie.load('test')).toBe('test');
+      isomorphicCookie.setRawCookie('test=test');
+      expect(isomorphicCookie.load('test')).toBe('test');
 
-      reactCookie.save('test', { test: true });
-      expect(typeof reactCookie.load('test')).toBe('object');
+      isomorphicCookie.save('test', { test: true });
+      expect(typeof isomorphicCookie.load('test')).toBe('object');
     });
   });
 
   describe('remove', function() {
     it('should do nothing if not in the browser', function() {
       expect(function() {
-        reactCookie.remove('test');
+        isomorphicCookie.remove('test');
       }).not.toThrow();
     });
   });
