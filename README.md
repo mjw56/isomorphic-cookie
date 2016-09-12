@@ -2,14 +2,15 @@
 Load, save and remove cookies within your isomorphic application
 
 ## Isomorphic cookies!
-You can also plug it directly with a Node.js request by adding just before the renderToString: `var unplug = isomorphicCookie.plugToRequest(req, res);`<br />
-*(require the cookieParser middleware)*
+If using on Node.js with express or hapi, you can hook into the request and reply using `var unplug = isomorphicCookie.plugToRequest(req, res);`
+
+*(require the cookieParser middleware for express)*
 
 To ensure long running async operations do not attempt to alter cookies after the request has been sent, call the `unplug` function that is returned in a finally block in your router.
 
 If you are within a non-browser or Node.js environment, you can use `isomorphicCookie.setRawCookie(req.headers.cookie)`
 
-This supports Express and Hapi. If you need to support another framework, feel free to send a PR.
+This currently supports Express and Hapi. If you need to support another framework, feel free to send a PR.
 
 ## Download
 `npm install isomorphic-cookie`<br />
